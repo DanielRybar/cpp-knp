@@ -1,0 +1,112 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+#include <random>
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+int kmn = 0;
+int uzivatel = 0;
+int pc = 0;
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+	Label5->Caption="Zvolil jsi kámen.";
+	randomize();
+	kmn = (rand() % 3 )+ 1;
+	switch(kmn)
+	{
+		case 1: Label2->Caption="Kámen"; break;
+		case 2: Label2->Caption="Nùžky"; uzivatel++; break;
+		case 3: Label2->Caption="Papír"; pc++; break;
+		default: Label2->Caption="Chyba"; break;
+	}
+	Label4->Caption=uzivatel;
+	Label6->Caption=pc;
+	if(uzivatel >= 10)
+	{
+		Label7->Caption="Vyhrál uživatel!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+	else if(pc >= 10)
+	{
+		Label7->Caption="Vyhrál PC!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+	Label5->Caption="Zvolil jsi nùžky.";
+	randomize();
+	kmn = (rand() % 3 )+ 1;
+	switch(kmn)
+	{
+		case 1: Label2->Caption="Kámen"; pc++; break;
+		case 2: Label2->Caption="Nùžky"; break;
+		case 3: Label2->Caption="Papír"; uzivatel++; break;
+		default: Label2->Caption="Chyba"; break;
+	}
+	Label4->Caption=uzivatel;
+	Label6->Caption=pc;
+	if(uzivatel >= 10)
+	{
+		Label7->Caption="Vyhrál uživatel!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+	else if(pc >= 10)
+	{
+		Label7->Caption="Vyhrál PC!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+	Label5->Caption="Zvolil jsi papír.";
+	randomize();
+	kmn = (rand() % 3 )+ 1;
+	switch(kmn)
+	{
+		case 1: Label2->Caption="Kámen"; uzivatel++; break;
+		case 2: Label2->Caption="Nùžky"; pc++; break;
+		case 3: Label2->Caption="Papír"; break;
+		default: Label2->Caption="Chyba"; break;
+	}
+	Label4->Caption=uzivatel;
+	Label6->Caption=pc;
+	if(uzivatel >= 10)
+	{
+		Label7->Caption="Vyhrál uživatel!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+	else if(pc >= 10)
+	{
+		Label7->Caption="Vyhrál PC!";
+		Button1->Cancel = true;
+		Button2->Cancel = true;
+		Button3->Cancel = true;
+	}
+}
+//---------------------------------------------------------------------------
